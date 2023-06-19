@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -49,24 +50,34 @@ const Stories = [
     username: 'Julie',
   },
 ];
+const Colors = {
+  first: ['#FF0000', '#00FF00', '#4B0082', '#ffff'],
+  second: ['#FFFF00', '#FF7F00', '#FF0000', '#4B0082'],
+};
 interface InstaStoriesProps {
   changeColor: boolean;
 }
 const InstaStories: React.FC<InstaStoriesProps> = ({ changeColor }) => {
-  const [activeStr, setActiveStr] = useState(4);
-  const [imgHeight, setImgHeight] = useState(85);
-  const [imgWidth, setImgWidth] = useState(85);
+  const [state, setState] = useState({
+    activeStr: 4,
+    imgHeight: 85,
+    imgWidth: 85,
+  });
   const [pressIndex, setPressIndex] = useState(0);
-  const styles = getStyles(activeStr, imgHeight, imgWidth);
+  const styles = getStyles(state.activeStr, state.imgHeight, state.imgWidth);
   const confirmHandler = (index: number) => {
-    if (activeStr === 4) {
-      setActiveStr(0);
-      setImgHeight(88);
-      setImgWidth(88);
+    if (state.activeStr === 4) {
+      setState({
+        activeStr: 0,
+        imgHeight: 88,
+        imgWidth: 88,
+      });
     } else {
-      setActiveStr(4);
-      setImgHeight(85);
-      setImgWidth(85);
+      setState({
+        activeStr: 4,
+        imgHeight: 85,
+        imgWidth: 85,
+      });
     }
     setPressIndex(index);
   };
@@ -78,10 +89,12 @@ const InstaStories: React.FC<InstaStoriesProps> = ({ changeColor }) => {
           <View style={styles.iconStyle}>
             <AntDesign name="pluscircle" size={20} color="#2A93D5" />
           </View>
-          <Text style={styles.usernameStyle}>Your Story</Text>
+          <Text style={[styles.usernameStyle, {}]}>Your Story</Text>
         </View>
         {Stories.map((item, index) => (
-          <TouchableOpacity onPress={() => confirmHandler(index)} key={index}>
+          <TouchableOpacity
+            onPress={() => confirmHandler(index)}
+            key={index.toString()}>
             <View style={styles.stories}>
               <LinearGradient
                 style={[
@@ -89,13 +102,13 @@ const InstaStories: React.FC<InstaStoriesProps> = ({ changeColor }) => {
                   index === pressIndex ? styles.specialImageStyle : null,
                 ]}
                 colors={
-                  index % 2 === 0 && changeColor
-                    ? ['#FF0000', '#00FF00', '#4B0082', '#ffff']
-                    : ['#FFFF00', '#FF7F00', '#FF0000', '#4B0082']
+                  index % 2 === 0 && changeColor ? Colors.first : Colors.second
                 }>
                 <Image source={item.Str} style={styles.imageStyle} />
               </LinearGradient>
-              <Text style={styles.usernameStyle}>{item.username}</Text>
+              <Text maxFontSizeMultiplier={1} style={styles.usernameStyle}>
+                {item.username}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -103,7 +116,6 @@ const InstaStories: React.FC<InstaStoriesProps> = ({ changeColor }) => {
     </ScrollView>
   );
 };
-
 const getStyles = (brdrWidth: number, imgHeight: number, imgWidth: number) =>
   StyleSheet.create({
     headerBackground: {
@@ -160,5 +172,4 @@ const getStyles = (brdrWidth: number, imgHeight: number, imgWidth: number) =>
       alignSelf: 'center',
     },
   });
-
 export default InstaStories;
