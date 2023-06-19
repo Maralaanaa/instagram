@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
 import Header from '../components/Header';
 import InstaStories from '../components/InstaStories';
 import InstaPost from '../components/InstaPost';
@@ -15,6 +16,10 @@ const Home = () => {
       <View style={styles.homeStyle}>
         <Header headerHandler={headerHandler} />
         <InstaStories changeColor={changeColor} />
+        <TextInput
+          style={{ backgroundColor: 'white', padding: 10 }}
+          placeholder="Type here ...."
+        />
         <InstaPost />
       </View>
     </SafeAreaView>
