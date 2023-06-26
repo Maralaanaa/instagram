@@ -5,7 +5,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -122,7 +121,7 @@ const getStyles = (brdrWidth: number, imgHeight: number, imgWidth: number) =>
       backgroundColor: 'black',
       paddingHorizontal: 18,
       paddingVertical: 10,
-      height: 150,
+      height: 160,
     },
     imageStyle: {
       height: 85,

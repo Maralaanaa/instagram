@@ -19,6 +19,7 @@ const BottomTab = () => {
           tabBarShowLabel: false,
           tabBarStyle: {
             backgroundColor: 'black',
+            // top: 10,
           },
           tabBarInactiveTintColor: 'white',
           tabBarActiveTintColor: 'white',
