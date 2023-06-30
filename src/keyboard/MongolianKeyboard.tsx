@@ -39,7 +39,7 @@ const MongolianKeyboard = () => {
     } else if (scrollViewIndex === 2) {
       setSelectedKeyScrollView2(key);
       dispatch(setInputValue2(key));
-    } else if (inputValue.length < 10) {
+    } else if (inputValue.length < 11) {
       if (key === 'x') {
         dispatch(setInputValue3(inputValue3.slice(0, -1)));
       } else if (key === 'save') {
@@ -48,7 +48,7 @@ const MongolianKeyboard = () => {
         } else {
           dispatch(setIsKeyboardVisible(false));
         }
-      } else {
+      } else if (inputValue3.length < 8) {
         dispatch(setInputValue3(inputValue3 + key));
       }
     }
