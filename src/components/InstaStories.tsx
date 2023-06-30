@@ -121,7 +121,8 @@ const getStyles = (brdrWidth: number, imgHeight: number, imgWidth: number) =>
       backgroundColor: 'black',
       paddingHorizontal: 18,
       paddingVertical: 10,
-      height: 160,
+      paddingBottom: 50,
+      // height: 160,
     },
     imageStyle: {
       height: 85,
